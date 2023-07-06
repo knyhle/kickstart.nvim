@@ -11,5 +11,6 @@ return {
   },
   config = function ()
     require('neo-tree').setup {}
+    vim.keymap.set("n", "<C-n>", "<cmd> Neotree <CR>", { desc = "Open Neotree" })
   end,
 }
