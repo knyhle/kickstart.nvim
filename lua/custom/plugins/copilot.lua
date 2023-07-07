@@ -3,12 +3,12 @@
 return {
   "zbirenbaum/copilot.lua",
   cmd = { "Copilot" },
-  event = { "BufEnter" },
+  event = { "InsertEnter" },
   opts = {
     suggestion = {
       auto_trigger = true,
       keymap = {
-        accept = "<TAB>"
+        accept = "<M-1>"
       }
     }
   },
