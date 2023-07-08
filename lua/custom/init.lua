@@ -4,6 +4,23 @@ vim.cmd([[ autocmd VimEnter * Copilot auth ]])
 
 vim.opt.splitright = true
 vim.opt.swapfile = false
+vim.opt.scrolloff = 8
+
+vim.keymap.set("n", "H", "^", { desc = "Move to first non-blank character" })
+vim.keymap.set("n", "L", "$", { desc = "Move to end of line" })
+
+vim.keymap.set("n", "<BS>" , "<C-^>`”zz", { desc = "Switch to previous buffer" })
+
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+
+-- preserve visual block selection on indent
+vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
+
+-- switch ; and : commands
+vim.keymap.set("n", ";", ":", { desc = "Command" })
+vim.keymap.set("n", ":", ";", { desc = "Command" })
 
 vim.keymap.set("n", "<leader>vs", "<cmd> vsplit <CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>vh", "<cmd> split <CR>", { desc = "Horizontal split" })
@@ -26,4 +43,4 @@ vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without overwriting cli
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete without overwriting clipboard" })
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
