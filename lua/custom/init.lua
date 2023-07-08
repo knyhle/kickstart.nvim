@@ -1,5 +1,5 @@
 
-vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme 'catppuccin-mocha'
 vim.cmd([[ autocmd VimEnter * Copilot auth ]])
 
 vim.opt.splitright = true
