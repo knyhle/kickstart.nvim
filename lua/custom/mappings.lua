@@ -6,15 +6,15 @@ vim.keymap.set("n", "L", "$", { desc = "Move to end of line" })
 
 vim.keymap.set("n", "<BS>" , "<C-^>`”zz", { desc = "Switch to previous buffer" })
 
-vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+-- vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- preserve visual block selection on indent
 vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
 
 -- switch ; and : commands
-vim.keymap.set("n", ";", ":", { desc = "Command" })
-vim.keymap.set("n", ":", ";", { desc = "Command" })
+-- vim.keymap.set("n", ";", ":", { desc = "Command" })
+-- vim.keymap.set("n", ":", ";", { desc = "Command" })
 
 vim.keymap.set("n", "<leader>vs", "<cmd> vsplit <CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>vh", "<cmd> split <CR>", { desc = "Horizontal split" })
