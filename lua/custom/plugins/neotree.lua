@@ -52,7 +52,5 @@ return {
       enable_git_status = true,
       enable_diagnostics = true,
     }
-
-    vim.keymap.set("n", "<C-n>", "<cmd> Neotree <CR>", { desc = "Open Neotree" })
   end,
 }
