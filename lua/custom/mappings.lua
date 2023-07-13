@@ -41,4 +41,4 @@ vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete without overwriting cli
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("n", "<C-n>", "<cmd> Neotree toggle <CR>", { desc = "Toggle file tree" })
+vim.keymap.set("n", "<C-m>", "<cmd> Neotree toggle <CR>", { desc = "Toggle file tree" })
