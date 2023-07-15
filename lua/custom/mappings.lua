@@ -7,6 +7,8 @@
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+vim.keymap.set("n", "<leader>n", "<cmd> Neotree toggle <CR>", { desc = "Toggle neotree" })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -56,7 +58,7 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<leader>hm", mark.add_file, { desc = "Add file to harpoon" })
 vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu, { desc = "Toggle harpoon quick menu" })
 
-vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
-vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
-vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
-vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+vim.keymap.set("n", "<leader>gh", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<leader>gt", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<leader>gn", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<leader>gs", function() ui.nav_file(4) end)
