@@ -49,3 +49,14 @@ vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without overwriting cli
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete without overwriting clipboard" })
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
+
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<leader>gm", mark.add_file)
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+
+vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
