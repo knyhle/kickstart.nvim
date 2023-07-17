@@ -45,12 +45,5 @@ return {
       {text = "", texthl = "DiagnosticSignHint"})
     -- NOTE: this is changed from v1.x, which used the old style of highlight groups
     -- in the form "LspDiagnosticsSignWarning"
-
-    require('neo-tree').setup {
-      source_selector = {
-        winbar = true,
-        statusline = true,
-      }
-    }
   end,
 }
