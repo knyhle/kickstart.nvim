@@ -6,10 +6,10 @@ return {
   event = { "InsertEnter" },
   opts = {
     suggestion = {
-      auto_trigger = true,
-      keymap = {
-        accept = "<C-s>",
-      }
+      -- auto_trigger = true,
+      -- keymap = {
+      --   accept = "<C-s>",
+      -- }
     }
   },
 }
