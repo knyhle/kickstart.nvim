@@ -53,12 +53,6 @@ return {
       { "<leader>ccf", "<cmd>CopilotChatFixCode<cr>",        desc = "CopilotChat - Fix code" },
       { "<leader>ccb", "<cmd>CopilotChatBetterNamings<cr>",  desc = "CopilotChat - Better Name" },
       { "<leader>ccd", "<cmd>CopilotChatDocumentation<cr>",  desc = "CopilotChat - Add documentation for code" },
-      { "<leader>cca", "<cmd>CopilotChatSwaggerApiDocs<cr>", desc = "CopilotChat - Add Swagger API documentation" },
-      {
-        "<leader>ccA",
-        "<cmd>CopilotChatSwaggerJsDocs<cr>",
-        desc = "CopilotChat - Add Swagger API with Js Documentation",
-      },
       -- Text related commands
       { "<leader>ccs", "<cmd>CopilotChatSummarize<cr>", desc = "CopilotChat - Summarize text" },
       { "<leader>ccS", "<cmd>CopilotChatSpelling<cr>",  desc = "CopilotChat - Correct spelling" },
