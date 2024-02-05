@@ -73,7 +73,7 @@ return {
       },
       -- Custom input for CopilotChat
       {
-        "<leader>cci",
+        "<leader>cch",
         function()
           local input = vim.fn.input("Ask Copilot: ")
           if input ~= "" then
