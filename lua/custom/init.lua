@@ -3,7 +3,6 @@
 -- NOTE: You can change these options as you wish!
 
 vim.cmd.colorscheme 'catppuccin-mocha'
-vim.cmd([[ autocmd VimEnter * Copilot auth ]])
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
