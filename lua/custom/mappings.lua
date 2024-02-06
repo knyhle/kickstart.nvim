@@ -6,6 +6,7 @@
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<C-n', '<Nop>', { silent = true })
 
 -- vim.keymap.set("n", "<leader>e", "<cmd> Neotree toggle <CR>", { desc = "Toggle neotree" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
