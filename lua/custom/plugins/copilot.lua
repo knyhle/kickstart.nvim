@@ -1,3 +1,14 @@
+local function get_git_diff()
+  local handle = io.popen("git diff")
+  if not handle then
+    return ""
+  end
+
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
 return {
   {
     -- copilot
@@ -46,18 +57,18 @@ return {
     event = "VeryLazy",
     keys = {
       -- Code related commands
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>",        desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>",          desc = "CopilotChat - Generate tests" },
-      { "<leader>ccr", "<cmd>CopilotChatReview<cr>",         desc = "CopilotChat - Review code" },
-      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>",       desc = "CopilotChat - Refactor code" },
-      { "<leader>ccf", "<cmd>CopilotChatFixCode<cr>",        desc = "CopilotChat - Fix code" },
-      { "<leader>ccb", "<cmd>CopilotChatBetterNamings<cr>",  desc = "CopilotChat - Better Name" },
-      { "<leader>ccd", "<cmd>CopilotChatDocumentation<cr>",  desc = "CopilotChat - Add documentation for code" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>",       desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>",         desc = "CopilotChat - Generate tests" },
+      { "<leader>ccr", "<cmd>CopilotChatReview<cr>",        desc = "CopilotChat - Review code" },
+      { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>",      desc = "CopilotChat - Refactor code" },
+      { "<leader>ccf", "<cmd>CopilotChatFixCode<cr>",       desc = "CopilotChat - Fix code" },
+      { "<leader>ccb", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Name" },
+      { "<leader>ccd", "<cmd>CopilotChatDocumentation<cr>", desc = "CopilotChat - Add documentation for code" },
       -- Text related commands
-      { "<leader>ccs", "<cmd>CopilotChatSummarize<cr>", desc = "CopilotChat - Summarize text" },
-      { "<leader>ccS", "<cmd>CopilotChatSpelling<cr>",  desc = "CopilotChat - Correct spelling" },
-      { "<leader>ccw", "<cmd>CopilotChatWording<cr>",   desc = "CopilotChat - Improve wording" },
-      { "<leader>ccc", "<cmd>CopilotChatConcise<cr>",   desc = "CopilotChat - Make text concise" },
+      { "<leader>ccs", "<cmd>CopilotChatSummarize<cr>",     desc = "CopilotChat - Summarize text" },
+      { "<leader>ccS", "<cmd>CopilotChatSpelling<cr>",      desc = "CopilotChat - Correct spelling" },
+      { "<leader>ccw", "<cmd>CopilotChatWording<cr>",       desc = "CopilotChat - Improve wording" },
+      { "<leader>ccc", "<cmd>CopilotChatConcise<cr>",       desc = "CopilotChat - Make text concise" },
       -- Chat with Copilot in visual mode
       {
         "<leader>ccv",
@@ -81,6 +92,18 @@ return {
           end
         end,
         desc = "CopilotChat - Ask input",
+      },
+      -- Generate commit message base on the git diff
+      {
+        "<leader>ccm",
+        function()
+          local diff = get_git_diff()
+          if diff ~= "" then
+            vim.fn.setreg('"', diff)
+            vim.cmd("CopilotChat Write commit message for the change with commit-zen convention.")
+          end
+        end,
+        desc = "CopilotChat - Generate commit message",
       },
       -- Debug
       { "<leader>ccD", "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
