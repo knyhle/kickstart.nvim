@@ -1,5 +1,5 @@
 local function get_git_diff()
-  local handle = io.popen("git diff")
+  local handle = io.popen("git diff --staged")
   if not handle then
     return ""
   end
