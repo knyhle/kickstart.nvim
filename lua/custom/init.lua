@@ -4,6 +4,7 @@
 
 vim.cmd.colorscheme 'catppuccin-mocha'
 vim.cmd([[ autocmd VimEnter * Copilot auth ]])
+vim.cmd([[ autocmd VimEnter * clearjumps ]])
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
