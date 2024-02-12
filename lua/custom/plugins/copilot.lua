@@ -84,7 +84,7 @@ return {
       },
       -- Custom input for CopilotChat
       {
-        "<leader>cch",
+        "<leader>cci",
         function()
           local input = vim.fn.input("Ask Copilot: ")
           if input ~= "" then
@@ -100,7 +100,7 @@ return {
           local diff = get_git_diff()
           if diff ~= "" then
             vim.fn.setreg('"', diff)
-            vim.cmd("CopilotChat Write commit message for the change with commit-zen convention.")
+            vim.cmd("CopilotChat Write commit message for the change with commitzen convention.")
           end
         end,
         desc = "CopilotChat - Generate commit message",
