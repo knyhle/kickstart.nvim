@@ -29,8 +29,8 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {
-      debug = true,
-      show_help = "yes",
+      debug = false,
+      show_help = "no",
       prompts = {
         -- Code related prompts
         Explain = "Please explain how the following code works.",
@@ -42,6 +42,7 @@ return {
 
         BetterNamings = "Please provide better names for the following variables and functions.",
         Documentation = "Please provide documentation for the following code.",
+        DocString = "Please create a docstring for the following code.",
         -- Text related prompts
 
         Summarize = "Please summarize the following text.",
@@ -64,6 +65,7 @@ return {
       { "<leader>ccf", "<cmd>CopilotChatFixCode<cr>",       desc = "CopilotChat - Fix code" },
       { "<leader>ccb", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Name" },
       { "<leader>ccd", "<cmd>CopilotChatDocumentation<cr>", desc = "CopilotChat - Add documentation for code" },
+      { "<leader>cc'", "<cmd>CopilotChatDocString<cr>",     desc = "CopilotChat - Add simple docstring for code." },
       -- Text related commands
       { "<leader>ccs", "<cmd>CopilotChatSummarize<cr>",     desc = "CopilotChat - Summarize text" },
       { "<leader>ccS", "<cmd>CopilotChatSpelling<cr>",      desc = "CopilotChat - Correct spelling" },
