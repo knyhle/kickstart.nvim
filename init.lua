@@ -96,9 +96,9 @@ require('lazy').setup({
         end
 
         -- Navigation
-        map({ 'n', 'v' }, ']c', function()
+        map({ 'n', 'v' }, ']h', function()
           if vim.wo.diff then
-            return ']c'
+            return ']h'
           end
           vim.schedule(function()
             gs.next_hunk()
@@ -458,7 +458,7 @@ vim.defer_fn(function()
           --
           -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
           ["]l"] = "@loop.outer",
-          ["]d"] = "@conditional.outer",
+          ["]c"] = "@conditional.outer",
 
           -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
           -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
@@ -469,19 +469,19 @@ vim.defer_fn(function()
           [']M'] = '@function.outer',
           [']['] = '@class.outer',
           ["]L"] = "@loop.outer",
-          ["]D"] = "@conditional.outer",
+          ["]C"] = "@conditional.outer",
         },
         goto_previous_start = {
           ['[m'] = '@function.outer',
           ['[['] = '@class.outer',
           ["[l"] = "@loop.outer",
-          ["[d"] = "@conditional.outer",
+          ["[c"] = "@conditional.outer",
         },
         goto_previous_end = {
           ['[M'] = '@function.outer',
           ['[]'] = '@class.outer',
           ["[L"] = "@loop.inner",
-          ["[D"] = "@conditional.outer",
+          ["[C"] = "@conditional.outer",
         },
       },
       -- swap = {
