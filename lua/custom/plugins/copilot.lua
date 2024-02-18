@@ -28,6 +28,10 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" }, -- Use telescope for help actions
+      { "nvim-lua/plenary.nvim" },
+    },
     opts = {
       debug = false,
       show_help = "no",
@@ -51,12 +55,33 @@ return {
         Wording = "Please improve the grammar and wording of the following text.",
         Concise = "Please rewrite the following text to make it more concise.",
       },
+      disable_extra_info = "no", -- Disable extra information (e.g: system prompt, token count) in the response.
+      hide_system_prompt = "no", -- Show user prompts only and hide system prompts.
     },
     build = function()
       vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
     end,
     event = "VeryLazy",
     keys = {
+      {
+        "<leader>ccm",
+        function()
+          local diff = get_git_diff()
+          if diff ~= "" then
+            vim.fn.setreg('"', diff)
+            vim.cmd("CopilotChat Write commit message for the change with commitzen convention.")
+          end
+        end,
+        desc = "CopilotChat - Generate commit message",
+      },
+      -- Show prompts actions with telescope
+      {
+        "<leader>ccp",
+        function()
+          require("CopilotChat.code_actions").show_prompt_actions()
+        end,
+        desc = "CopilotChat - Prompt actions",
+      },
       -- Code related commands
       { "<leader>cce", "<cmd>CopilotChatExplain<cr>",       desc = "CopilotChat - Explain code" },
       { "<leader>cct", "<cmd>CopilotChatTests<cr>",         desc = "CopilotChat - Generate tests" },
@@ -64,7 +89,6 @@ return {
       { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>",      desc = "CopilotChat - Refactor code" },
       { "<leader>ccf", "<cmd>CopilotChatFixCode<cr>",       desc = "CopilotChat - Fix code" },
       { "<leader>ccb", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Name" },
-      { "<leader>ccd", "<cmd>CopilotChatDocumentation<cr>", desc = "CopilotChat - Add documentation for code" },
       { "<leader>cc'", "<cmd>CopilotChatDocString<cr>",     desc = "CopilotChat - Add simple docstring for code." },
       -- Text related commands
       { "<leader>ccs", "<cmd>CopilotChatSummarize<cr>",     desc = "CopilotChat - Summarize text" },
@@ -107,8 +131,27 @@ return {
         end,
         desc = "CopilotChat - Generate commit message",
       },
+      -- Quick chat with Copilot
+      {
+        "<leader>ccq",
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            -- Copy all the lines to unnamed register
+            vim.cmd('normal! ggVG"*y')
+            vim.cmd("CopilotChat " .. input)
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
+      },
       -- Debug
-      { "<leader>ccD", "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
+      { "<leader>ccd", "<cmd>CopilotChatDebugInfo<cr>",     desc = "CopilotChat - Debug Info" },
+      -- Fix the issue with diagnostic
+      { "<leader>ccf", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
+      -- Clear buffer and chat history
+      { "<leader>ccl", "<cmd>CopilotChatReset<cr>",         desc = "CopilotChat - Clear buffer and chat history" },
+      -- Toggle Copilot Chat Vsplit
+      { "<leader>ccv", "<cmd>CopilotChatVsplitToggle<cr>",  desc = "CopilotChat - Toggle Vsplit" },
     },
   },
 }

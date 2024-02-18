@@ -8,15 +8,29 @@
 -- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<C-n>', '<Nop>', { silent = true })
 
--- vim.keymap.set("n", "<leader>e", "<cmd> Neotree toggle <CR>", { desc = "Toggle neotree" })
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
+function Jump_and_center()
+	local char = vim.fn.nr2char(vim.fn.getchar())
+	vim.cmd("normal! '" .. char)
+	vim.cmd("normal! zz")
+end
+
+vim.api.nvim_set_keymap('n', "'", ":lua Jump_and_center()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "`", ":lua Jump_and_center()<CR>", { noremap = true, silent = true })
+
+function SaveAndCenter()
+	vim.cmd("write")
+	vim.cmd("normal! zz")
+end
+
+-- vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", ":lua SaveAndCenter()<CR>", { desc = "Save File" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- vim.keymap.set("n", "<leader>q", "<cmd> q <CR>", { desc = "Quit file" })
-vim.keymap.set("n", "<BS>", "<C-^>`”zz", { desc = "Switch to previous buffer" })
+-- vim.keymap.set("n", "<BS>", "<C-^>`”zz", { desc = "Switch to previous buffer" })
 -- vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- preserve visual block selection on indent
@@ -41,3 +55,5 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without overwriting cli
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without overwriting clipboard" })
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
+
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle NvimTree" })

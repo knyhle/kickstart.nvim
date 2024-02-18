@@ -1,26 +1,70 @@
 return {
   {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require('aerial').setup(
-        {
-          -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-          on_attach = function(bufnr)
-            -- Jump forwards/backwards with '{' and '}'
-            -- vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-            -- vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-          end,
-        }
-      )
-
-      -- You probably also want to set a keymap to toggle aerial
-      vim.keymap.set("n", "<leader>cs", "<cmd>AerialToggle!<CR>")
+    "stevearc/aerial.nvim",
+    opts = function()
+      local opts = {
+        attach_mode = "global",
+        backends = { "lsp", "treesitter", "markdown", "man" },
+        show_guides = true,
+        layout = {
+          resize_to_content = false,
+          win_opts = {
+            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            signcolumn = "yes",
+            statuscolumn = " ",
+          },
+        },
+        -- stylua: ignore
+        guides = {
+          mid_item   = "├╴",
+          last_item  = "└╴",
+          nested_top = "│ ",
+          whitespace = "  ",
+        },
+      }
+      return opts
     end,
-  }
+    keys = {
+      { "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+    },
+  },
+
+  -- Telescope integration
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   optional = true,
+  --   opts = function()
+  --     local status_ok, telescope = pcall(require, "telescope")
+  --     if not status_ok then
+  --       return
+  --     end
+  --     require("telescope").load_extension("aerial")
+  --   end,
+  --   keys = {
+  --     {
+  --       "<leader>ss",
+  --       "<cmd>Telescope aerial<cr>",
+  --       desc = "Goto Symbol (Aerial)",
+  --     },
+  --   },
+  -- },
+  -- edgy integration
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      local status_ok, aerial = pcall(require, "aerial.nvim")
+      if not status_ok then
+        return
+      end
+
+      opts.right = opts.right or {}
+      table.insert(opts.right, {
+        title = "Aerial",
+        ft = "aerial",
+        pinned = true,
+        open = "AerialOpen",
+      })
+    end,
+  },
 }
